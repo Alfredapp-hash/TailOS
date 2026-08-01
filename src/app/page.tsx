@@ -1,71 +1,47 @@
-const metrics = [
-  { label: "Revenue today", value: "$2,840", delta: "+12.4% vs last Saturday" },
-  { label: "Pets scheduled", value: "24", delta: "91% capacity utilized" },
-  { label: "Average ticket", value: "$118", delta: "+$9 this month" },
-  { label: "Rebooking rate", value: "76%", delta: "+6 points this quarter" }
+import { MuddyDogHero } from "@/components/MuddyDogHero";
+
+const services = [
+  { title: "Signature groom", description: "Bath, haircut, nails, ears, finishing spray, and a photo-ready finish." },
+  { title: "Bath + deshed", description: "Deep clean, coat conditioning, blowout, brushing, nails, and tidy-up." },
+  { title: "Puppy's first visit", description: "A calm introduction designed to build confidence and positive grooming habits." }
 ];
 
-const appointments = [
-  { time: "8:00 AM", pet: "Winston", service: "Doodle full groom", groomer: "Jessica" },
-  { time: "9:15 AM", pet: "Luna", service: "Bath + deshed", groomer: "Marcus" },
-  { time: "10:00 AM", pet: "Milo", service: "Puppy introduction", groomer: "Jessica" },
-  { time: "11:30 AM", pet: "Bella", service: "Full groom", groomer: "Ana" }
-];
-
-const insights = [
-  "18 pets are overdue based on their normal visit interval.",
-  "Oatmeal shampoo is projected to fall below par stock in 6 days.",
-  "Thursday afternoon capacity is only 54% booked.",
-  "Doodle services produce the highest gross profit this month."
-];
-
-export default function DashboardPage() {
+export default function HomePage() {
   return (
     <>
-      <header className="header">
-        <div>
-          <div className="eyebrow">Owner command center</div>
-          <h1>Good morning, TailOS Salon</h1>
-          <p className="muted">Saturday, August 1 · Live operational snapshot</p>
-        </div>
-        <button className="button">New appointment</button>
-      </header>
-
-      <section className="grid" aria-label="Key performance indicators">
-        {metrics.map((metric) => (
-          <article className="card" key={metric.label}>
-            <div className="muted">{metric.label}</div>
-            <div className="metric">{metric.value}</div>
-            <div className="delta">{metric.delta}</div>
-          </article>
-        ))}
-      </section>
-
-      <section className="section-grid">
-        <article className="card">
-          <div className="eyebrow">Schedule</div>
-          <h2>Next appointments</h2>
-          <div className="list">
-            {appointments.map((appointment) => (
-              <div className="row" key={`${appointment.time}-${appointment.pet}`}>
-                <div>
-                  <strong>{appointment.time} · {appointment.pet}</strong>
-                  <div className="muted">{appointment.service}</div>
-                </div>
-                <span className="badge">{appointment.groomer}</span>
-              </div>
+      <MuddyDogHero />
+      <main className="marketing-main">
+        <section className="marketing-section" id="services">
+          <p className="hero-kicker">Care built around the dog</p>
+          <h2>Everything they need to leave happy.</h2>
+          <div className="service-grid">
+            {services.map((service) => (
+              <article className="service-card" key={service.title}>
+                <span className="service-paw">✦</span>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+              </article>
             ))}
           </div>
-        </article>
+        </section>
 
-        <article className="card">
-          <div className="eyebrow">TailOS intelligence</div>
-          <h2>Needs attention</h2>
-          <div className="list">
-            {insights.map((insight) => <div className="row" key={insight}>{insight}</div>)}
+        <section className="experience-section" id="experience">
+          <div>
+            <p className="hero-kicker">The boutique salon experience</p>
+            <h2>Clean, calm, transparent care.</h2>
           </div>
-        </article>
-      </section>
+          <p>
+            Every pet receives a profile with preferences, sensitivities, grooming history, and before-and-after photos so each visit gets better.
+          </p>
+        </section>
+
+        <section className="booking-section" id="booking">
+          <p className="hero-kicker">Ready for the glow-up?</p>
+          <h2>Book their next transformation.</h2>
+          <p>Online booking will connect directly to the TailOS scheduling and pet CRM workflow.</p>
+          <button className="hero-primary" type="button">Start booking</button>
+        </section>
+      </main>
     </>
   );
 }
